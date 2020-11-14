@@ -14,8 +14,6 @@ function addNewTask(e) {
     }
     else {
         createTaskItem(new_task);
-        document.querySelector('#new-task').innerHTML = '';
-        console.log(document.querySelector('#new-task').value);
     }
 }
 
@@ -36,6 +34,8 @@ function createTaskItem(new_task) {
 
 function deleteTask(e) {
     if(e.target.className == 'secondary-content') {
-        e.target.parentElement.remove();
+        if(confirm('Are you sure you want to delete?')) {
+            e.target.parentElement.remove();
+        }
     }
 }
