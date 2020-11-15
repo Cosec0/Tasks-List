@@ -5,6 +5,7 @@ loadEventListners();
 function loadEventListners() {
     document.querySelector('#add-task-form').addEventListener('submit', addNewTask);
     document.querySelector('.collection').addEventListener('click', deleteTask);
+    document.querySelector('#clear-tasks-button').addEventListener('click', clearTasks);
 }
 
 function addNewTask(e) {
@@ -38,4 +39,13 @@ function deleteTask(e) {
             e.target.parentElement.remove();
         }
     }
+}
+
+function clearTasks(e) {
+    e.preventDefault();
+    tasks = Array.from(document.querySelector('.collection').children);
+    tasks.forEach(function(task){
+        task.remove();
+    });
+    
 }
