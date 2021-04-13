@@ -7,6 +7,25 @@ function loadEventListners() {
     document.querySelector('#add-task-form').addEventListener('submit', addNewTask);
     document.querySelector('.collection').addEventListener('click', deleteTask);
     document.querySelector('#clear-tasks-button').addEventListener('click', clearTasks);
+    document.querySelector('#search').addEventListener('input', onSearch);
+}
+
+function onSearch(e) {
+    tasks = Array.from(document.querySelector('.collection').children);
+    tasks.forEach(function(task){
+        task.remove();
+    });
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+    let filteredTask;
+    if(e.target.value != '') {
+        filteredTask = tasks.filter(task => task.indexOf(e.target.value) != -1);
+    }
+    else {
+        filteredTask = tasks;
+    }
+    filteredTask.forEach(function(task) {
+        createTaskItem(task);
+    })    
 }
 
 function addNewTask(e) {
@@ -16,6 +35,7 @@ function addNewTask(e) {
     }
     else {
         createTaskItem(new_task);
+        new_task = '';
     }
     storeTasktoLocalStorage(new_task);
 }
@@ -44,7 +64,7 @@ function deleteTask(e) {
     removeTaskFromLocalStorage(e.target.parentElement.innerText);
 }
 
-function clearTasks(e) {
+function clearTasks(e, p = "not_search") {
     e.preventDefault();
     tasks = Array.from(document.querySelector('.collection').children);
     tasks.forEach(function(task){
