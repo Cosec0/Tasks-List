@@ -1,5 +1,10 @@
+body {
+    background-image: url("https://static.collectui.com/shots/3474523/icon-illustration-system-large");
+}
+
 .card {
     padding: 30px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .new-task-form {
     margin-top: 30px;

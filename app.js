@@ -35,9 +35,9 @@ function addNewTask(e) {
     }
     else {
         createTaskItem(new_task);
-        new_task = '';
     }
     storeTasktoLocalStorage(new_task);
+    new_task = '';
 }
 
 function createTaskItem(new_task) {
@@ -86,6 +86,7 @@ function loadTasks() {
 }
 
 function storeTasktoLocalStorage(new_task) {
+    console.log('this is', new_task);
     if(localStorage.getItem('tasks') === null) {
         tasks = [];
     }
